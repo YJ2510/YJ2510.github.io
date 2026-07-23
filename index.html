@@ -1,23 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LimbusCompanyTool中文主页面</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
         body{
-            background-color: rgb(70, 69, 69);
+            background-color: #363535;
+            padding: 30px 15px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         h1{
             text-align: center;
-            color: white;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
         h2{
             text-align: center;
-            color: white;
+            color: #eeeeee;
+            margin: 24px 0;
+            font-weight: normal;
         }
         a{
             color:#87cefa;
+            text-decoration: none;
+        }
+        a:hover{
+            color:#b8e0ff;
+            text-decoration: underline;
+        }
+        button {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+        }
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -25,35 +58,35 @@
     <h1>欢迎来到<i>LimbusCompanyTool</i>中文页面</h1>
 
     <!-- 积分显示区域 -->
-    <div style="text-align:center; color:#ffdd44; font-size:22px;">
-        当前积分：<span id="userPoint">0</span>
+    <div style="text-align:center; color:#ffdd44; font-size:24px; margin-bottom:24px;">
+        当前但丁积分：<span id="userPoint">0</span>
     </div>
 
     <h2><p><a href="https://limbuscompany.huijiwiki.com/wiki/" target="_blank">点击以访问LimbusCompany中文维基</a></p></h2>
 
-<div style="text-align:center;">
-    <h2 style="display: inline-block;font-size: 30px; margin-right:5px;">镜牢挑战</h2>
-    <button id="btn" onclick="showText()" style="padding:8px 20px; font-size:18px; border-radius:6px;">展开</button>
+<div style="text-align:center; margin:30px 0;">
+    <h2 style="display: inline-block;font-size: 30px; margin-right:12px;">镜牢挑战</h2>
+    <button id="btn" onclick="showText()" style="padding:10px 24px; font-size:18px; border-radius:8px; background:#555555; color:#fff;">展开</button>
 </div>
 
 <div id="content" style="display: none; text-align:center;">
-    <div style="text-align:center; margin:20px 0;">
-        <h2>镜牢挑战抽取</h2>
-        <button onclick="startDraw()" style="padding:8px 20px; font-size:18px; border-radius:6px;">开始抽取</button>
-        <div id="result" style="margin-top:15px; font-size:30px; color:white;"></div>
+    <div style="text-align:center; margin:30px 0; padding:20px; background:#424141; border-radius:12px;">
+        <h2 style="margin-bottom:16px;">镜牢挑战抽取</h2>
+        <button onclick="startDraw()" style="padding:10px 24px; font-size:18px; border-radius:8px; background:#446699; color:white;">开始抽取</button>
+        <div id="result" style="margin-top:20px; font-size:26px; color:#fff; line-height:1.6;"></div>
         <!-- 加分按钮，默认禁用 -->
-        <button id="addPointBtn" disabled onclick="addPoint()" style="padding:8px 20px; font-size:18px; border-radius:6px; margin-top:15px; background:#339933; color:white;">
+        <button id="addPointBtn" disabled onclick="addPoint()" style="padding:10px 24px; font-size:18px; border-radius:8px; margin-top:20px; background:#339933; color:white;">
             完成本次挑战 +5积分
         </button>
     </div>
 </div>
 
-    <h2>理想是很多084工具！！！目前只做了镜牢这块儿 目的是让打镜牢的但丁们不再无聊（对）然后请支持我（？？） 关注我好吧（不强求）目前暂未做其他功能，后续会慢慢完善的！！！但是也请大大们关注支持一下（（）有建议都可以提！我很乐意听大家的建议来完善！！！</h2>
+    <h2 style="line-height:1.7;">理想是很多084工具！！！目前只做了镜牢这块儿 目的是让打镜牢的但丁们不再无聊（对）然后请支持我（？？） 关注我好吧（不强求）目前暂未做其他功能，后续会慢慢完善的！！！但是也请大大们关注支持一下（（）有建议都可以提！我很乐意听大家的建议来完善！！！</h2>
     <h2>抖音号：YJ2510.love</h2>
 
-    <!-- 新增：页面最底部 清除积分按钮 -->
-    <div style="text-align:center; margin:30px 0;">
-        <button onclick="clearAllPoint()" style="padding:8px 20px; font-size:16px; border-radius:6px; background:#992222; color:white;">
+    <!-- 清除积分按钮 -->
+    <div style="text-align:center; margin-top:40px;">
+        <button onclick="clearAllPoint()" style="padding:9px 22px; font-size:16px; border-radius:8px; background:#992222; color:white;">
             清除全部积分
         </button>
     </div>
@@ -82,27 +115,31 @@ function addPoint(){
     addPointBtn.style.display = "none";
 }
 
-// 【新增】清除全部积分函数
+// 清除全部积分函数
 function clearAllPoint(){
-    // 二次确认，防止手滑误点
-    let sure = confirm("⚠️确认清除所有但丁积分吗？该操作无法恢复！");
+    let sure = confirm("⚠️确认清除所有积分吗？该操作无法恢复！");
     if(sure){
         point = 0;
         localStorage.removeItem("dantePoint");
         refreshPointView();
-        alert("积分数据已全部清除！");
+        alert("积分已全部清除！");
     }
 }
 
 // ==========镜牢抽取代码==========
 function startDraw(){
     let list = [
-        "在商店里禁止治疗罪人",
+        "在商店里禁止治疗罪人（如果是15牢请重新抽取）",
         "仅可使用商店的治疗罪人或技能与被动来或事件治疗罪人（若奖励有治疗类E.G.O.可以拿 但是不可以进入战斗 恢复理智不算）",
         "整局经费不可超过2000",
         "禁止选择遭遇战奖励",
         "禁止选择奖励的E.G.O饰品（观测和体系选择的饰品可以拿）",
-        "禁止判定失败"
+        "禁止判定失败",
+        "禁止选择地狱鸡/凤·凰/由子弹画下的句点/憎恶与绝望",
+        "禁止观测泛用饰品",
+        "选择苦难时选择等效最高的（加算硬币威力+减算硬币威力->攻击等级>防御等级 基础威力与最终威力默认3等效但优先级比频点威力大）",
+        "最后一层走无尽的死路/纯洁的歌喉/紫色编码",
+        "不可以拿可以保命的E.G.O.（如：未孵化的火种 紧急授予型怀表）"
     ];
     let randomIndex = Math.floor(Math.random() * list.length);
     resultDom.innerText = list[randomIndex];
