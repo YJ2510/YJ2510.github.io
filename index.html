@@ -48,6 +48,7 @@
         button:active:not(:disabled) {
             transform: translateY(0);
         }
+        /* 禁用状态自动变灰 */
         button:disabled {
             opacity: 0.45;
             cursor: not-allowed;
@@ -110,9 +111,8 @@ function addPoint(){
     point += 5;
     refreshPointView();
     alert("挑战完成！获得5积分！");
-    // 领取积分后：隐藏挑战文本 和 加分按钮
-    resultDom.style.display = "none";
-    addPointBtn.style.display = "none";
+    // 只禁用按钮，不隐藏！文字和按钮都保留，按钮变灰
+    addPointBtn.disabled = true;
 }
 
 // 清除全部积分函数
@@ -143,9 +143,7 @@ function startDraw(){
     ];
     let randomIndex = Math.floor(Math.random() * list.length);
     resultDom.innerText = list[randomIndex];
-    // 重新抽取时，恢复显示条目和按钮
-    resultDom.style.display = "block";
-    addPointBtn.style.display = "inline-block";
+    // 新抽取：恢复按钮可用状态
     addPointBtn.disabled = false;
 }
 
