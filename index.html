@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LimbusCompanyTools中文主页面</title>
+    <title>LimbusCompanyTool中文主页面</title>
     <style>
         body{
-            background-color: dimgray;
+            background-color: rgb(70, 69, 69);
         }
     </style>
 </head>
@@ -17,10 +17,75 @@
             color: white;
         }
     </style>
-    <h1>欢迎来到<i>LimbusCompanyTools</i>中文页面</h1>
+    <h1>欢迎来到<i>LimbusCompanyTool</i>中文页面</h1>
     <body>
-        
+        <style>
+            h2{
+                text-align: center;
+                color: white;
+            }
+        </style>
+        <h2><p><a href="https://limbuscompany.huijiwiki.com/wiki/" target="_blank">点击以访问LimbusCompany中文维基</a></p></h2>
     </body>
-    </html>
+        <style>
+            h2{
+                text-align: center;
+                color: white;
+            }
+        </style>
+<body>
+<div style="text-align:center;">
+    <h2 style="display: inline-block;font-size: 30px; margin-right:5px;">镜牢挑战</h2>
+    <!-- 给按钮加上 id="btn" -->
+    <button id="btn" onclick="showText()" style="padding:8px 20px; font-size:18px; border-radius:6px;">展开</button>
+</div>
+
+<div id="content" style="display: none; text-align:center;">
+    <div style="text-align:center; margin:20px 0;">
+    <h2>镜牢挑战抽取</h2>
+    <button onclick="startDraw()" style="padding:8px 20px; font-size:18px; border-radius:6px;">开始抽取</button>
+    <div id="result" style="margin-top:15px; font-size:30px; color:white;"></div>
+</div>
+
+<script>
+function startDraw(){
+    // 在这里填写所有候选内容，自由增删
+    let list = [
+        "候选条目1",
+        "候选条目2",
+        "候选条目3",
+        "候选条目4",
+        "候选条目5"
+    ];
+    // 随机获取下标
+    let randomIndex = Math.floor(Math.random() * list.length);
+    // 显示结果
+    document.getElementById("result").innerText = list[randomIndex];
+}
+</script>
+</div>
+
+<script>
+function showText(){
+    let box = document.getElementById("content");
+    let button = document.getElementById("btn");
+    if(box.style.display === "none"){
+        box.style.display = "block";
+        button.innerText = "收起";  // 展开后文字变为收起
+    }else{
+        box.style.display = "none";
+        button.innerText = "展开";  // 收起变回展开
+    }
+}
+</script>
 </body>
+<body>
+    <style>
+        h2{
+            text-align: center;
+            color: white;
+        }
+    </style>
+    <h2>理想是很多084工具！！！目前只做了镜牢这块儿 目的是让打镜牢的但丁们不再无聊（对）然后请支持我（？？） 关注我好吧（不强求）目前暂未做其他功能，后续会慢慢完善的！！！但是也请大大们关注支持一下（（）有建议都可以提！我很乐意听大家的建议来完善！！！</h2>
+    <h2>抖音号：YJ2510.love</h2>
 </html>
